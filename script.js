@@ -66,11 +66,6 @@ const clickCalculate=(e)=>{
         resMin = calC[1];
 
         console.log(resHour, resMin)
-        
-
-
-        
-        
     }
 }
 
