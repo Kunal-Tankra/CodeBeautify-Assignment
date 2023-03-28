@@ -90,6 +90,10 @@ input::-webkit-inner-spin-button {
     
 }
 
+.totalOfRow{
+    text-align: right;
+}
+
 /* footer */
 tfoot td {
     padding-top: 15px;
