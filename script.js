@@ -54,7 +54,7 @@ const clickCalculate=(e)=>{
             breakMin = 0;
         }
 
-
+        
         let resHour;
         let resMin;
         let calC
@@ -64,13 +64,35 @@ const clickCalculate=(e)=>{
             resMin = "00"
         }
         else{
+            // 12 am -> 00 
+            if(start_AM_PM == "AM" && startHour == "12"){
+                startHour = 0
+            }
+            if(end_AM_PM == "AM" && endHour == "12"){
+                endHour = 24
+            }
             
+            
+            // set 24 hour time to calculate
             if(start_AM_PM == "PM"){
-                startHour += 12;
+                if(startHour == 12){
+                    startHour = 12;
+                }
+                else{
+
+                    startHour += 12;
+                }
+
             }
             
             if(end_AM_PM == "PM"){
-                endHour += 12;
+                if(endHour == 12){
+                    endHour = 12;
+                }
+                else{
+
+                    endHour += 12;
+                }
             }
             
             if(start_AM_PM == "PM" && end_AM_PM == "AM"){
@@ -78,10 +100,11 @@ const clickCalculate=(e)=>{
                 resHour= calC[0];
                 resMin = calC[1];
                 
+                
+                console.log(resHour, resMin)
                 calC = calCTime(resHour,resMin,24,0);
                 resHour = calC[0];
                 resMin = calC[1];
-                
             }
             else{
                 calC = calCTime(startHour, startMin, endHour, endMin);
@@ -92,6 +115,7 @@ const clickCalculate=(e)=>{
             calC = calCTime(breakHour, breakMin, resHour, resMin);
             resHour = calC[0];
             resMin = calC[1];
+
         }
         
         totalOfRow.innerHTML = `${resHour}.${resMin == 0? "00": resMin}`
@@ -119,7 +143,7 @@ const calCTime = (stHour,stMin,endHour,endMin)=>{
         min = endMin - stMin;
     }
 
-    return [hour, min];
+    return [Math.abs( hour),Math.abs( min)];
 }
 
 
