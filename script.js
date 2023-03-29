@@ -34,6 +34,26 @@ const clickCalculate=(e)=>{
         let breakMin = parseInt(breakDeduction[1].value);
 
         
+        // setting NaN->0
+        if(isNaN(startHour)){
+            startHour = 0;
+        }
+        if(isNaN(startMin)){
+            startMin = 0;
+        }
+        if(isNaN(endHour)){
+            endHour = 0;
+        }
+        if(isNaN(endMin)){
+            endMin = 0;
+        }
+        if(isNaN(breakHour)){
+            breakHour = 0;
+        }
+        if(isNaN(breakMin)){
+            breakMin = 0;
+        }
+
 
         let resHour;
         let resMin;
@@ -44,14 +64,15 @@ const clickCalculate=(e)=>{
             resMin = "00"
         }
         else{
+            
             if(start_AM_PM == "PM"){
                 startHour += 12;
             }
-    
+            
             if(end_AM_PM == "PM"){
                 endHour += 12;
             }
-
+            
             if(start_AM_PM == "PM" && end_AM_PM == "AM"){
                 calC = calCTime(endHour, endMin,startHour, startMin);
                 resHour= calC[0];
@@ -66,15 +87,13 @@ const clickCalculate=(e)=>{
                 calC = calCTime(startHour, startMin, endHour, endMin);
                 resHour = calC[0];
                 resMin = calC[1];
-                
             }
             
             calC = calCTime(breakHour, breakMin, resHour, resMin);
             resHour = calC[0];
             resMin = calC[1];
         }
-
-      
+        
         totalOfRow.innerHTML = `${resHour}.${resMin == 0? "00": resMin}`
 
         totalHour += parseInt(resHour);
@@ -110,8 +129,8 @@ const clickClearAll=(e)=>{
 
     // set 0
     for (const idx in setHour) {
-        setHour[idx].value = "0";
-        setMin[idx].value = "00";
+        setHour[idx].value = "";
+        setMin[idx].value = "";
     }
 
     for (const elem of totalOfRows) {
