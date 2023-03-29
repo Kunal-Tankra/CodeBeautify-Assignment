@@ -137,3 +137,9 @@ form button:active{
 
 
 
+/* media query */
+@media screen and (max-width: 1140px) {
+    table{
+        width: 100%;
+    }
+}
