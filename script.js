@@ -33,6 +33,16 @@ const clickCalculate=(e)=>{
         let breakHour = parseInt(breakDeduction[0].value);
         let breakMin = parseInt(breakDeduction[1].value);
 
+        if(startHour <=0 || startHour >12 || endHour <=0 || endHour >12){
+            alert("hour should be under 1 to 12")
+            return
+        }
+
+        if(startMin <0 || startMin >60 || endMin <0 || endMin >60){
+            alert("minute should be under 0 to 60")
+            return;
+        }
+
         
         // setting NaN->0
         if(isNaN(startHour)){
